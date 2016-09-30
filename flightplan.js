@@ -5,7 +5,7 @@ plan.target('staging', {
     host: 'playground.wangboyang.com',
     port: 22,
     username: 'root',
-    privateKey: 'C:\\Users\\wangb\\.ssh\\id_rsa',
+    privateKey: '/root/.ssh/id_rsa',
 });
 const gitDir = `/var/www/${packageJson.name}`;
 plan.remote(['clean-deploy', 'deploy', 'start'], (remote) => {
