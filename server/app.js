@@ -15,6 +15,10 @@ app.get('/js/babel-polyfill.min.js', (req, res) => {
 });
 app.post('/upload', upload.single('resume'), (req, res) => {
     logger.info(req.file);
+    logger.info(req.body.password);
+    if (!config.password || req.body.password !== config.password) {
+        return void (res.status(403).send('Forbidden'));
+    }
     fs.rename(req.file.path, '/var/www/html/resume.pdf', (err) => {
         if (err) {
             logger.warn('ERR: ', err);
